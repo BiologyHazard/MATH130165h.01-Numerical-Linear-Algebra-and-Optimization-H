@@ -57,7 +57,7 @@ std::string matrix_to_string(const Matrix<T> &matrix, const std::size_t max_size
 
 // 生成随机矩阵
 template <typename T>
-Matrix<T> generate_random_matrix(std::size_t rows, std::size_t cols) {
+Matrix<T> generate_random_matrix(const std::size_t rows, const std::size_t cols) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<T> dis(0, 1);
@@ -150,7 +150,7 @@ Matrix<T> matrix_multiply_by_dgemm(const Matrix<T> &A, const Matrix<T> &B) {
 
 // 比较两个矩阵是否近似相等
 template <typename T>
-bool all_close(const Matrix<T> &A, const Matrix<T> &B, double relative_tolerance = 1.0e-5, double absolute_tolerance = 1.0e-8) {
+bool all_close(const Matrix<T> &A, const Matrix<T> &B, const double relative_tolerance = 1.0e-5, const double absolute_tolerance = 1.0e-8) {
     if (A.size() != B.size() || A[0].size() != B[0].size()) {
         return false;
     }
@@ -180,31 +180,29 @@ std::pair<double, typename std::result_of<Func(Args...)>::type> timeit(Func func
 }
 
 int main() {
-    using T = double;
-
     std::size_t rows_A = 500;
     std::size_t cols_A = 500;
     std::size_t rows_B = 500;
     std::size_t cols_B = 500;
 
-    Matrix<T> A = generate_random_matrix<T>(rows_A, cols_A);
-    Matrix<T> B = generate_random_matrix<T>(rows_B, cols_B);
+    Matrix<double> A = generate_random_matrix<double>(rows_A, cols_A);
+    Matrix<double> B = generate_random_matrix<double>(rows_B, cols_B);
 
     std::cout << "A =" << std::endl << matrix_to_string(A) << std::endl;
     std::cout << "B =" << std::endl << matrix_to_string(B) << std::endl;
 
     try {
         // 手动矩阵乘法计时
-        auto result_by_hand = timeit(matrix_multiply_by_hand<T>, A, B);
+        auto result_by_hand = timeit(matrix_multiply_by_hand<double>, A, B);
         double duration_seconds_by_hand = result_by_hand.first;
-        Matrix<T> C_by_hand = result_by_hand.second;
+        Matrix<double> C_by_hand = result_by_hand.second;
         std::cout << "C by hand =" << std::endl << matrix_to_string(C_by_hand) << std::endl;
         std::cout << "Multiplication by hand took " << duration_seconds_by_hand << " seconds" << std::endl;
 
         // 使用 dgemm_ 函数矩阵乘法计时
-        auto result_by_dgemm = timeit(matrix_multiply_by_dgemm<T>, A, B);
+        auto result_by_dgemm = timeit(matrix_multiply_by_dgemm<double>, A, B);
         double duration_seconds_by_dgemm = result_by_dgemm.first;
-        Matrix<T> C_by_dgemm = result_by_dgemm.second;
+        Matrix<double> C_by_dgemm = result_by_dgemm.second;
         std::cout << "C by dgemm =" << std::endl << matrix_to_string(C_by_dgemm) << std::endl;
         std::cout << "Multiplication by dgemm took " << duration_seconds_by_dgemm << " seconds" << std::endl;
 
