@@ -172,6 +172,7 @@ bool all_close(const Matrix<T> &A, const Matrix<T> &B, const double relative_tol
 // 计时函数
 template<typename Func, typename... Args>
 std::pair<double, typename std::result_of<Func(Args...)>::type> timeit(Func func, Args&&... args) {
+    // 如果函数返回类型为 void，则编译不通过
     auto start = std::chrono::high_resolution_clock::now();
     auto result = func(std::forward<Args>(args)...);
     auto end = std::chrono::high_resolution_clock::now();
