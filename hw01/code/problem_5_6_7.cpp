@@ -19,7 +19,7 @@ using Matrix = std::vector<std::vector<T>>;
 
 // 将矩阵的一行转换为字符串
 template <typename T>
-std::string row_to_string(const std::vector<T> &row, const std::size_t max_size = 10) {
+std::string vector_to_string(const std::vector<T> &row, const std::size_t max_size = 10) {
     std::size_t n = row.size();
     std::string s = "[";
     for (std::size_t i = 0; i < n; ++i) {
@@ -42,7 +42,7 @@ std::string matrix_to_string(const Matrix<T> &matrix, const std::size_t max_size
     std::size_t rows = matrix.size();
     std::string s = "[";
     for (std::size_t i = 0; i < rows; ++i) {
-        s += row_to_string(matrix[i], max_size);
+        s += vector_to_string(matrix[i], max_size);
         if (i < rows - 1) {
             s += ",\n ";
         }
