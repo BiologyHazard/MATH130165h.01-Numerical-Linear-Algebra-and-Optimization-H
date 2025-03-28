@@ -1,20 +1,20 @@
 CXX = g++
-CXXFLAGS = -Wall -o2
+CXXFLAGS = -Wall -O2
 
-LAPACK_FLAGS = -llapack -lblas
+LAPACK_FLAGS = -l lapack -l blas
 
-TARGETS = classical_gram_schmidt householder_qr dgeqrf
+TARGETS = problem_1 problem_2 dgeqrf problem_4
 
 all: $(TARGETS)
 
-# problem_5_6_7: problem_5_6_7.cpp
-# 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LAPACK_FLAGS)
-
-classical_gram_schmidt: classical_gram_schmidt.cpp
+problem_1: problem_1.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-householder_qr: householder_qr.cpp
+problem_2: problem_2.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
+
+problem_4: problem_4.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LAPACK_FLAGS)
 
 dgeqrf: dgeqrf.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LAPACK_FLAGS)
