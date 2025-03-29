@@ -1,5 +1,12 @@
 # hw03
 
+## Problem 1
+
+```
+n = 2000
+PA - LU Frobenius norm: 1.37891e-11
+```
+
 ## Problem 2
 
 ```
@@ -37,17 +44,17 @@ P = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 2
 
 ```
 n = 10
-Residual Forbenius norm: 6.46699e-15
+A - R^TR Forbenius norm: 6.46699e-15
 ```
 
 ## Problem 6
 
 ```
 n = 10
-Residual Forbenius norm: 1.2517e-16
+A - R^TR Frobenius norm: 1.2517e-16
 ```
 
 ```
 n = 1000
-Residual Forbenius norm: 8.77099e-16
+A - R^TR Frobenius norm: 8.77099e-16
 ```

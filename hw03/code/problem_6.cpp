@@ -35,7 +35,7 @@ auto apply_cholesky_factorization_on_single_matrix(std::size_t n) {
     std::cout << "n = " << n << std::endl;
     // std::cout << "A = " << a << std::endl;
     // std::cout << "R = " << r << std::endl;
-    std::cout << "Residual Forbenius norm: " << matrix_norm<NormType::FROBENIUS>(a - transpose(r) * r) << std::endl;
+    std::cout << "A - R^TR Frobenius norm: " << matrix_norm<NormType::FROBENIUS>(a - transpose(r) * r) << std::endl;
     std::cout << std::endl;
 }
 
